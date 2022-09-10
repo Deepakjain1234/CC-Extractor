@@ -49,7 +49,7 @@ def init_kvm_db():
 
 
 @mod_kvm.route('/kvm-cmd/<cmd>/<kvm_name>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type([AccountType.admin])
 def kvm_cmd(cmd, kvm_name):
     kvm = KVM.query.filter(KVM.name == kvm_name).first()
@@ -94,7 +94,7 @@ def kvm_cmd(cmd, kvm_name):
 
 
 @mod_kvm.route('/kvm-status/<kvm_name>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type([AccountType.admin])
 def check_kvm_status(kvm_name):
 

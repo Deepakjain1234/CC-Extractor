@@ -30,7 +30,7 @@ BUF_SIZE = 65536  # reading file in 64kb chunks
 
 @mod_dashboard.route('/upload', methods=['GET', 'POST'])
 @mod_dashboard.route('/dashboard', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def dashboard():
     from flask import current_app as app
     from run import log
@@ -149,7 +149,7 @@ def dashboard():
 
 
 @mod_dashboard.route('/dashboard/new/<filename>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def new_job(filename):
     from run import log
     file = UploadedFiles.query.filter(UploadedFiles.filename == filename).first()
@@ -201,7 +201,7 @@ def new_job(filename):
 
 
 @mod_dashboard.route('/admin-dashboard', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type(account_types=[AccountType.admin])
 def admin():
     from run import log
@@ -244,7 +244,7 @@ def admin():
 
 
 @mod_dashboard.route('/dashboard/files', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def uploaded_files():
     details = DetailsForTemplate(g.user.id)
     layout = LayoutHelper(logged_in=True, details=details)
@@ -252,7 +252,7 @@ def uploaded_files():
 
 
 @mod_dashboard.route('/dashboard/queue', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def user_queue():
     details = DetailsForTemplate(g.user.id)
     layout = LayoutHelper(logged_in=True, details=details)
@@ -260,7 +260,7 @@ def user_queue():
 
 
 @mod_dashboard.route('/admin-dashboard/files', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type(account_types=[AccountType.admin])
 def admin_uploaded_files():
     details = DetailsForTemplate(g.user.id, admin_dashboard=True)
@@ -269,7 +269,7 @@ def admin_uploaded_files():
 
 
 @mod_dashboard.route('/admin-dashboard/queue', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type(account_types=[AccountType.admin])
 def admin_queue():
     details = DetailsForTemplate(g.user.id, admin_dashboard=True)
@@ -278,7 +278,7 @@ def admin_queue():
 
 
 @mod_dashboard.route('/admin-dashboard/users', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type(account_types=[AccountType.admin])
 def user_list():
     details = DetailsForTemplate(g.user.id, admin_dashboard=True)
@@ -287,7 +287,7 @@ def user_list():
 
 
 @mod_dashboard.route('/change-acc-type/<user_id>/<type>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type(account_types=[AccountType.admin])
 def change_acc_type(user_id, type):
     user = Users.query.filter(Users.id == user_id).first()
@@ -306,7 +306,7 @@ def change_acc_type(user_id, type):
 
 @mod_dashboard.route('/serve/<type>/<job_no>', methods=['GET', 'POST'])
 @mod_dashboard.route('/serve/<type>/<job_no>/<view>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def serve(type, job_no, view=None):
     from flask import current_app as app
     from run import log
@@ -331,7 +331,7 @@ def serve(type, job_no, view=None):
 
 
 @mod_dashboard.route('/delete/<filename>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def delete(filename):
     from flask import current_app as app
     from run import log
@@ -360,7 +360,7 @@ def delete(filename):
 
 
 @mod_dashboard.route('/parameters/<function>/<id>', methods=['GET', 'POST'])
-@login_required
+# @login_required
 @check_account_type(account_types=[AccountType.admin])
 def manage_parameter(function, id):
     from run import log
